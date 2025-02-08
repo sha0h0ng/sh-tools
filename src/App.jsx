@@ -3,6 +3,8 @@ import { Container } from 'react-bootstrap';
 import Sidebar from './components/Sidebar';
 import RandomizerTool from './components/RandomizerTool';
 import PasswordGenerator from './components/PasswordGenerator';
+import DelimiterToJson from './components/DelimiterToJson';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
@@ -13,6 +15,7 @@ function App() {
         <Routes>
           <Route path='/' element={<RandomizerTool />} />
           <Route path='/password-generator' element={<PasswordGenerator />} />
+          <Route path='/delimiter-to-json' element={<DelimiterToJson />} />
         </Routes>
       </Container>
     </Router>

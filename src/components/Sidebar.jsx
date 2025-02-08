@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Navbar, Nav, Container, Offcanvas } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
-import { PenToolIcon as Tool, Key } from 'lucide-react';
+import { PenToolIcon as Tool, Key, FileJson } from 'lucide-react';
 
 function Sidebar() {
   const location = useLocation();
@@ -11,6 +11,39 @@ function Sidebar() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const navItems = [
+    {
+      path: '/',
+      icon: Tool,
+      label: 'Randomizer Tool',
+    },
+    {
+      path: '/password-generator',
+      icon: Key,
+      label: 'Password Generator',
+    },
+    {
+      path: '/delimiter-to-json',
+      icon: FileJson,
+      label: 'Delimiter to JSON',
+    },
+  ];
+
+  const renderNavItems = (onClick = null) =>
+    navItems.map((item) => (
+      <Nav.Link
+        key={item.path}
+        as={Link}
+        to={item.path}
+        active={location.pathname === item.path}
+        className='sidebar-link'
+        onClick={onClick}
+      >
+        <item.icon size={18} className='me-2' />
+        {item.label}
+      </Nav.Link>
+    ));
 
   return (
     <>
@@ -40,28 +73,7 @@ function Sidebar() {
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body className='bg-dark'>
-              <Nav className='flex-column'>
-                <Nav.Link
-                  as={Link}
-                  to='/'
-                  active={location.pathname === '/'}
-                  className='sidebar-link'
-                  onClick={handleClose}
-                >
-                  <Tool size={18} className='me-2' />
-                  Randomizer Tool
-                </Nav.Link>
-                <Nav.Link
-                  as={Link}
-                  to='/password-generator'
-                  active={location.pathname === '/password-generator'}
-                  className='sidebar-link'
-                  onClick={handleClose}
-                >
-                  <Key size={18} className='me-2' />
-                  Password Generator
-                </Nav.Link>
-              </Nav>
+              <Nav className='flex-column'>{renderNavItems(handleClose)}</Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
         </Container>
@@ -77,24 +89,7 @@ function Sidebar() {
           <Tool size={24} className='me-2' />
           Tools App
         </Navbar.Brand>
-        <Nav.Link
-          as={Link}
-          to='/'
-          active={location.pathname === '/'}
-          className='sidebar-link'
-        >
-          <Tool size={18} className='me-2' />
-          Randomizer Tool
-        </Nav.Link>
-        <Nav.Link
-          as={Link}
-          to='/password-generator'
-          active={location.pathname === '/password-generator'}
-          className='sidebar-link'
-        >
-          <Key size={18} className='me-2' />
-          Password Generator
-        </Nav.Link>
+        {renderNavItems()}
       </Nav>
     </>
   );
