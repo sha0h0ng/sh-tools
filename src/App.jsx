@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import Sidebar from './components/Sidebar';
 import RandomizerTool from './components/RandomizerTool';
 import PasswordGenerator from './components/PasswordGenerator';
@@ -10,18 +10,11 @@ function App() {
   return (
     <Router>
       <Sidebar />
-      <Container fluid>
-        <Row>
-          <Col className='main-content'>
-            <Routes>
-              <Route path='/' element={<RandomizerTool />} />
-              <Route
-                path='/password-generator'
-                element={<PasswordGenerator />}
-              />
-            </Routes>
-          </Col>
-        </Row>
+      <Container fluid className='main-content'>
+        <Routes>
+          <Route path='/' element={<RandomizerTool />} />
+          <Route path='/password-generator' element={<PasswordGenerator />} />
+        </Routes>
       </Container>
     </Router>
   );
