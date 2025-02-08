@@ -3,7 +3,6 @@ import { Container } from 'react-bootstrap';
 import Sidebar from './components/Sidebar';
 import RandomizerTool from './components/RandomizerTool';
 import PasswordGenerator from './components/PasswordGenerator';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
